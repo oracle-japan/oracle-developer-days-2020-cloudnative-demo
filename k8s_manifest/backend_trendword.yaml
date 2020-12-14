@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-trendword-app
+  labels:
+    app: backend-trendword
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend-trendword
+  template:
+    metadata:
+      labels:
+        app: backend-trendword
+    spec:
+      containers:
+      - name: backend-trendword
+        image: phx.ocir.io/orasejapan/devdays2020/backend-trendword-app 
+        ports:
+        - containerPort: 8082
+      - name: h2trendword
+        image: oscarfonts/h2
+        env:
+        - name: H2_OPTIONS
+          value: "-ifNotExists"
+        ports:
+        - containerPort: 81
+        - containerPort: 1521
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-trendword-svc
+spec:
+  type: ClusterIP 
+  ports:
+  - port: 8082
+    targetPort: 8082
+  selector:
+    app: backend-trendword
