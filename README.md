@@ -11,7 +11,7 @@ k8s_manifest => Kubernetesのマニフェストファイル
 
 ## ビルド方法
 
-各アプリケーションは、各ディレクトリ(devdays-demo-backend_kohaku/devdays-demo-backend_trendword/devdays-demo-frontend)に配置されているDockerFileを利用してビルドできます。  
+各アプリケーションは、各ディレクトリ(devdays-demo-backend_kohaku/devdays-demo-backend_trendword/devdays-demo-frontend)に配置されているDockerfileを利用してビルドできます。  
   (mavenコマンドを利用してビルドすることもできます)  
 ビルドコマンドは以下です。
 
@@ -38,6 +38,12 @@ docker push <ビルド時に設定した任意のイメージ名>
 ```
 
 OCIRのリージョンコードは[公式ハンズオンドキュメント](https://oracle-japan.github.io/paasdocs/documents/containers/handson/k8s-walkthrough/#2-ociroke)の手順2.1および2.2を参考にしてください。
+
+コンテナレジストリにpushしたら、各manifestの19行目部分に記載されている`image`フィールドをご自身の環境に合わせて編集してください。
+
+```yaml
+image: phx.ocir.io/orasejapan/devdays2020/frontend-app
+```
 
 ## Kubernetesへのデプロイ方法
 
