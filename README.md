@@ -48,3 +48,23 @@ kubectl apply -f .
 ```
 
 Oracle Cloud Infrastructureを利用する場合は、[公式ハンズオンドキュメント](https://oracle-japan.github.io/paasdocs/documents/containers/common/)の手順にしたがって、OKEのプロビジョニングとkubectlコマンドのセットアップを実施してください。
+
+## アプリケーションへのアクセス
+
+このデモでは、Load Balancerを利用したアクセスを利用します。  
+Load Balancer以外でのアクセスを利用する場合は、マニフェストファイルを適宜編集してください。
+
+Kubernetesにマニフェストをデプロイすると、以下のServiceがデプロイされます。  
+Oracle Cloud Infrastructureを利用する場合は、OCI Load Balancerがデプロイされています。
+
+```sh
+[opc@oke-client k8s_manifest]$ kubectl get service/frontend
+NAME       TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)          AGE
+frontend   LoadBalancer   10.96.138.125   XXX.XXX.XXX.XXX   3000:31049/TCP   2d23h
+```
+
+上記のLBを利用して、EXTERNAL-IP経由でアクセスできます。ポートは3000番ポートです。  
+
+```
+http://XXX.XXX.XXX.XXX:3000
+```
