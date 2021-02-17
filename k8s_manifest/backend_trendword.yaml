@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend-trendword
-        image: phx.ocir.io/orasejapan/devdays2020/backend-trendword-app 
+        image: phx.ocir.io/orasejapan/devdays2020/backend_trendword_app 
         ports:
         - containerPort: 8082
       - name: h2trendword
