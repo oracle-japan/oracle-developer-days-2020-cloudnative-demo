@@ -1,4 +1,4 @@
-FROM oracle/graalvm-ce:latest
+FROM ghcr.io/graalvm/graalvm-ce:latest
 
 # GraalVMのnpmバイナリをPATHに追加
 ENV PATH $PATH:$JAVA_HOME/bin/npm
